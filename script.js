@@ -1,51 +1,70 @@
 let playerMove;
- 
-document.getElementById('rockButton').addEventListener('click', function() {
-    playerMove = 'rock';
-    document.getElementById('player').innerText = '🪨';
-    selectMove();
-    calculateWinner();
-});
+let computerMove; 
 
-document.getElementById('paperButton').addEventListener('click', function() {
-    playerMove = 'paper';
-    document.getElementById('player').innerText = '🗒️';
-    selectMove();
-    calculateWinner();
-});
+let playerElement;
+let computerElement;
+let winnerElement;
 
-document.getElementById('scissorsButton').addEventListener('click', function() {
-    playerMove = 'scissors';
-    document.getElementById('player').innerText = '✂️';
-    selectMove();
-    calculateWinner();
-});
+window.onload = function(){
+    document.getElementById('rockButton').addEventListener('click', function() {
+        playerMove = 'rock';
+        playerElement.innerText = '🪨';
+        setTimeout(() => {
+            selectMove();
+            calculateWinner();
+        }, 500);
+    });
+
+    document.getElementById('paperButton').addEventListener('click', function() {
+        playerMove = 'paper';
+        playerElement.innerText = '🗒️';
+        setTimeout(() => {
+            selectMove();
+            calculateWinner();
+        }, 500);
+    });
+
+    document.getElementById('scissorsButton').addEventListener('click', function() {
+        playerMove = 'scissors';
+        playerElement.innerText = '✂️';
+        setTimeout(() => {
+            selectMove();
+            calculateWinner();
+        }, 500);
+    });
+
+    //to not write out the whole command 3 times
+    playerElement = document.getElementById('player');
+    computerElement = document.getElementById('computer');
+    winnerElement = document.getElementById('winner');
+}
+
+document.getElementById('winner').classList.add('dsjhflakjfl');
 
 function selectMove(){
     const randomNumber = Math.floor(Math.random() * 3); // random 0, 1 or 2 
     if (randomNumber === 0) {
-        document.getElementById('computer').innerText = '🪨'; 
+        computerElement.innerText = '🪨'; 
         computerMove = 'rock';
     } else if (randomNumber === 1){
-        document.getElementById('computer').innerText = '🗒️'; 
+        computerElement.innerText = '🗒️'; 
         computerMove = 'paper';
     } else {
-        document.getElementById('computer').innerText = '✂️'; 
+        computerElement.innerText = '✂️'; 
         computerMove = 'scissors';
     }
 }
 
 function calculateWinner() {
     if (playerMove === computerMove) {
-        document.getElementById('winner').innerText = "it's a tie :0 ";
+        winnerElement.innerText = "it's a tie :0 ";
     } else if (
         (playerMove === 'rock' && computerMove === 'scissors') ||
         (playerMove === 'paper' && computerMove === 'rock') ||
         (playerMove === 'scissors' && computerMove === 'paper')
     ) {
-        document.getElementById('winner').innerText = "OMG YOU WINNNNNNNNNN!!!!";
+        winnerElement.innerText = "OMG YOU WINNNNNNNNNN!!!!";
     } else {
-        document.getElementById('winner').innerText = "computer winss :((";
+        winnerElement.innerText = "computer winss :((";
     }
 }
-
