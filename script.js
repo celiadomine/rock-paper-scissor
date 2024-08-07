@@ -9,39 +9,51 @@ window.onload = function(){
     document.getElementById('rockButton').addEventListener('click', function() {
         playerMove = 'rock';
         playerElement.innerText = '🪨';
-        setTimeout(() => {
+        explosionElement.classList.add('explosion');
+        computerElement.style.opacity = 0;
+        winnerElement.style.opacity = 0;  
+        setTimeout(function() {
             selectMove();
             calculateWinner();
-        }, 500);
+            explosionElement.classList.remove('explosion');
+        }, 1000);
     });
 
     document.getElementById('paperButton').addEventListener('click', function() {
         playerMove = 'paper';
         playerElement.innerText = '🗒️';
-        setTimeout(() => {
+        explosionElement.classList.add('explosion');
+        computerElement.style.opacity = 0;
+        winnerElement.style.opacity = 0;  
+        setTimeout( function() {
             selectMove();
             calculateWinner();
-        }, 500);
+            explosionElement.classList.remove('explosion');
+        }, 1000);
     });
 
     document.getElementById('scissorsButton').addEventListener('click', function() {
         playerMove = 'scissors';
         playerElement.innerText = '✂️';
-        setTimeout(() => {
+        explosionElement.classList.add('explosion');
+        computerElement.style.opacity = 0;
+        winnerElement.style.opacity = 0;  
+        setTimeout( function() {
             selectMove();
             calculateWinner();
-        }, 500);
+            explosionElement.classList.remove('explosion');
+        }, 1000);
     });
 
     //to not write out the whole command 3 times
     playerElement = document.getElementById('player');
     computerElement = document.getElementById('computer');
     winnerElement = document.getElementById('winner');
+    explosionElement = document.getElementById('explosion');
 }
 
-document.getElementById('winner').classList.add('dsjhflakjfl');
-
 function selectMove(){
+    computerElement.style.opacity = 1; 
     const randomNumber = Math.floor(Math.random() * 3); // random 0, 1 or 2 
     if (randomNumber === 0) {
         computerElement.innerText = '🪨'; 
@@ -56,6 +68,7 @@ function selectMove(){
 }
 
 function calculateWinner() {
+    winnerElement.style.opacity = 1; 
     if (playerMove === computerMove) {
         winnerElement.innerText = "it's a tie :0 ";
     } else if (
