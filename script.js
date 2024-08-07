@@ -2,21 +2,21 @@ let playerMove;
  
 document.getElementById('rockButton').addEventListener('click', function() {
     playerMove = 'rock';
-    document.getElementById('player').innerText = 'You played rock';
+    document.getElementById('player').innerText = '🪨';
     selectMove();
     calculateWinner();
 });
 
 document.getElementById('paperButton').addEventListener('click', function() {
     playerMove = 'paper';
-    document.getElementById('player').innerText = 'You played paper';
+    document.getElementById('player').innerText = '🗒️';
     selectMove();
     calculateWinner();
 });
 
 document.getElementById('scissorsButton').addEventListener('click', function() {
     playerMove = 'scissors';
-    document.getElementById('player').innerText = 'You played scissors';
+    document.getElementById('player').innerText = '✂️';
     selectMove();
     calculateWinner();
 });
@@ -24,13 +24,13 @@ document.getElementById('scissorsButton').addEventListener('click', function() {
 function selectMove(){
     const randomNumber = Math.floor(Math.random() * 3); // random 0, 1 or 2 
     if (randomNumber === 0) {
-        document.getElementById('computer').innerText = 'Computer played rock'; 
+        document.getElementById('computer').innerText = '🪨'; 
         computerMove = 'rock';
     } else if (randomNumber === 1){
-        document.getElementById('computer').innerText = 'Computer played paper'; 
+        document.getElementById('computer').innerText = '🗒️'; 
         computerMove = 'paper';
     } else {
-        document.getElementById('computer').innerText = 'Computer played scissors'; 
+        document.getElementById('computer').innerText = '✂️'; 
         computerMove = 'scissors';
     }
 }

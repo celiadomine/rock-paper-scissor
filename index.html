@@ -4,15 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Rock Paper Scissors Shoot</h1>
-    <button id="rockButton">Rock</button>
-    <button id="paperButton">Paper</button>
-    <button id="scissorsButton">Scissors</button>
-    <p id="player"></p>
-    <p id="computer"></p>
-    <p id="winner"></p>
+    <div class="container">
+      <h2>YOU</h2>
+      <p class="winner" id="winner"></p>
+      <h2>BOT</h2>
+      <div class="player" id="player"></div>
+      <h2>vs</h2>
+      <div class="computer" id="computer"></div>
+    </div>
+    <div class="buttons">
+      <button id="rockButton">🪨</button>
+      <button id="paperButton">🗒️</button>
+      <button id="scissorsButton">✂️</button>
+    </div>
   <script src="script.js"></script>
 </body>
 </html>
