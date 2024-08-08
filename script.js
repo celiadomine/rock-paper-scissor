@@ -4,12 +4,20 @@ let computerMove;
 let playerElement;
 let computerElement;
 let winnerElement;
+let explosionElement;
+let playerScoreElement;
+let computerScoreElement;
+let bonusButton;
 
 let scorePlayer = 0;
 let scoreComputer = 0;
+
 window.onload = function(){
     scorePlayer = 0;
     scoreComputer = 0;
+    bonusButton = document.getElementById('bonusButton');
+    bonusButton.style.display = 'none'; // Hide the bonus button initially
+
     document.getElementById('rockButton').addEventListener('click', function() {
         playerMove = 'rock';
         playerElement.innerText = '🪨';
@@ -49,6 +57,19 @@ window.onload = function(){
         }, 1000);
     });
 
+    document.getElementById('bonusButton').addEventListener('click', function() {
+        playerMove = 'bonus';
+        playerElement.innerText = '🎀';
+        explosionElement.classList.add('explosion');
+        computerElement.style.opacity = 0;
+        winnerElement.style.opacity = 0;  
+        setTimeout( function() {
+            selectMove();
+            calculateWinner();
+            explosionElement.classList.remove('explosion');
+        }, 1000);
+    });
+
     //to not write out the whole getElementById 3 times
     playerElement = document.getElementById('player');
     computerElement = document.getElementById('computer');
@@ -57,10 +78,10 @@ window.onload = function(){
     playerScoreElement = document.getElementById('player-score');
     computerScoreElement = document.getElementById('computer-score');
 
+
     playerScoreElement.innerText = scorePlayer;
     computerScoreElement.innerText = scoreComputer;
 }
-
 
 function selectMove(){
     computerElement.style.opacity = 1; 
@@ -88,10 +109,20 @@ function calculateWinner() {
     ) {
         winnerElement.innerText = "OMG YOU WINNNNNNNNNN!!!!";
         scorePlayer++;
+    } else if (playerMove == 'bonus'){
+        winnerElement.innerText = "OMG YOU WINNNNNNNNNN!!!!";
+        scorePlayer = scorePlayer + 25;
     } else {
         winnerElement.innerText = "computer winss :((";
         scoreComputer++;
     }
     playerScoreElement.innerText = scorePlayer;
     computerScoreElement.innerText = scoreComputer;
+
+    // Check if the score is 15, 25, or 35 to show the bonus button
+    if (scorePlayer === 10 || scorePlayer === 50 || scorePlayer === 75) {
+        document.getElementById('bonusButton').style.display = 'block';
+    } else {
+        document.getElementById('bonusButton').style.display = 'none';
+    }
 }
