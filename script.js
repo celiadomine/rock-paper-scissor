@@ -5,7 +5,11 @@ let playerElement;
 let computerElement;
 let winnerElement;
 
+let scorePlayer = 0;
+let scoreComputer = 0;
 window.onload = function(){
+    scorePlayer = 0;
+    scoreComputer = 0;
     document.getElementById('rockButton').addEventListener('click', function() {
         playerMove = 'rock';
         playerElement.innerText = '🪨';
@@ -45,12 +49,18 @@ window.onload = function(){
         }, 1000);
     });
 
-    //to not write out the whole command 3 times
+    //to not write out the whole getElementById 3 times
     playerElement = document.getElementById('player');
     computerElement = document.getElementById('computer');
     winnerElement = document.getElementById('winner');
     explosionElement = document.getElementById('explosion');
+    playerScoreElement = document.getElementById('player-score');
+    computerScoreElement = document.getElementById('computer-score');
+
+    playerScoreElement.innerText = scorePlayer;
+    computerScoreElement.innerText = scoreComputer;
 }
+
 
 function selectMove(){
     computerElement.style.opacity = 1; 
@@ -77,7 +87,11 @@ function calculateWinner() {
         (playerMove === 'scissors' && computerMove === 'paper')
     ) {
         winnerElement.innerText = "OMG YOU WINNNNNNNNNN!!!!";
+        scorePlayer++;
     } else {
         winnerElement.innerText = "computer winss :((";
+        scoreComputer++;
     }
+    playerScoreElement.innerText = scorePlayer;
+    computerScoreElement.innerText = scoreComputer;
 }
